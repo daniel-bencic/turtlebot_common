@@ -2,9 +2,9 @@
 #define TOPIC_SUBSCRIBER_LASER_SCAN_H
 
 #include <string>
-
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
+#include <turtlebot_common/logging.h>
 
 namespace turtlebot_common {      
 	template <typename T>
@@ -46,6 +46,8 @@ namespace turtlebot_common {
                 if (!sub_) {
                         ROS_FATAL_STREAM("Subscribing to topic [" 
                                                 << topic_ << "]: failed!");
+                } else {
+                        TURTLEBOT_LOG("Subscribing to topic [%s]: done.", topic_.c_str());
                 }
         }
 }

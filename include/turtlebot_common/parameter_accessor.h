@@ -2,8 +2,8 @@
 #define PARAMETER_ACCESSOR_H
 
 #include <string>
-
 #include <ros/ros.h>
+#include "logging.h"
 
 namespace turtlebot_common {
 	class ParameterAccessor {
@@ -26,7 +26,9 @@ namespace turtlebot_common {
 		if (!nh_.getParam(name, val)) {
 			ROS_ERROR_STREAM("Retrieving value for parameter [" 
                                                 << name << "]: failed!");
-		}
+		} else { 
+                        TURTLEBOT_LOG("Retrieving value for parameter %s: done.", name.c_str());
+                }
 		return val;
 	}
 }

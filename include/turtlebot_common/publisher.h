@@ -2,8 +2,8 @@
 #define PUBLISHER_H
 
 #include <string>
-
 #include <ros/ros.h>
+#include "logging.h"
 
 namespace turtlebot_common {
 	template <typename T>
@@ -29,9 +29,11 @@ namespace turtlebot_common {
 	{
 		pub_ = nh.advertise<T>(topic, queue_size);
 		if (!pub_) {
-			ROS_FATAL_STREAM("Advertising topic [" 
+                        ROS_FATAL_STREAM("Advertising topic [" 
                                                 << topic << "]: failed!");
-		}
+                } else {
+                        TURTLEBOT_LOG("Advertising topic [%s]: done.", topic.c_str());     
+                }
 	}
 
 	template <typename T>
